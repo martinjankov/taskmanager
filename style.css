@@ -1,0 +1,114 @@
+h1, h2, h3, ul, p {
+	padding: 0;
+    margin: 0;
+}
+
+#tasks-app {
+    width: 600px;
+    margin: 0 auto;
+    background: #ececec;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#tasks-app header {
+	display: flex;
+	align-content: center;
+}
+
+#tasks-app header h1 {
+	width: 80%;
+}
+
+#tasks-app ul {
+   list-style: none;
+}
+
+#tasks-app ul li {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+}	
+
+#tasks-app ul li .task-meta {
+    width: 80%;
+    padding: 5px;
+}
+
+#tasks-app button {
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 10px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#tasks-app header button.task-add {
+    align-self: center;
+	background: #007AFF;
+	height: 100%;
+    margin: 0 auto;
+}
+
+#tasks-app ul li button.task-delete {
+	background: #a10000;
+}
+
+#tasks-app ul li button.task-update {
+	background: #4EBE57;
+}
+
+#tasks-app .loader {
+    text-align: center;
+}
+
+#tasks-app .task-description {
+    font-size: 12px;
+}
+
+.task-modal {
+	display: none;
+    position: fixed;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 25%;
+    width: 500px;
+}
+
+.task-modal h3 {
+	text-align: center;
+}
+
+.task-modal input,
+.task-modal textarea {
+	display: block;
+	width: 99%;
+	margin: 0 auto;
+	margin-top: 10px;
+	resize: none;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.task-modal input {
+	padding: 5px;
+	width: 98%;
+}
+
+.task-modal button.task-save {
+	background: #007AFF;
+	margin-top: 10px;
+}
+
+.task-modal button.close-modal {
+	background: #aaa;
+	margin-top: 10px;
+}
