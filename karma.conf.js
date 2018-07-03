@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        './index.js',
+        './TaskManager.js',
         './index.spec.js'
     ],
 
@@ -30,6 +30,17 @@ module.exports = function(config) {
     preprocessors: {
     },
 
+    webpack: {
+        module: {
+            loaders: [
+                { test: /\.js/, exclude: /node_modules/, loader: 'babel-loader' }
+            ]
+        },
+        watch: true
+    },
+    webpackServer: {
+        noInfo: true
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
