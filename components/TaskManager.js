@@ -101,7 +101,6 @@ class TaskManager {
 		} else {
 			const taskId = task.id;
 			this.tasksList[taskId] = task;
-			console.log(this.tasksList);
 			const taskEl =  `<li id="item-${task.id}" class="task-item">
 					<div class="task-meta">
 						<h3 class="task-title">${task.title}</h3>	
