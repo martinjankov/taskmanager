@@ -58,8 +58,8 @@ describe('TaskManager', () => {
 	        }
 		}).then(response => {
 			expect(response.ok).toBe(true);
-			done();
 		});
+		done();
 	});
 
 	it('should format tasks', (done) => {
