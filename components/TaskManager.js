@@ -1,6 +1,6 @@
 class TaskManager {
 	constructor(taskWrapper, taskListContainer, loader, modal) {
-		this.tasksList = [];
+		this.tasksList = {};
 		this.baseUrl = 'http://localhost:3000';
 		this.tasksListUrl = this.baseUrl + '/tasks';
 		this.tasksSaveUrl = this.baseUrl + '/tasks';
@@ -85,10 +85,11 @@ class TaskManager {
 
 	formatTasks(tasks) {
 		let listItem = '';
-		for (let task of tasks) {
-			this.addTaskItem(task);
+		if(tasks.length > 0) {
+			for (let task of tasks) {
+				this.addTaskItem(task);
+			}
 		}
-		
 		this.loader.style.display = 'none';
 	}
 
@@ -98,7 +99,9 @@ class TaskManager {
 			existingTask.querySelector('.task-title').innerHTML = task.title;
 			existingTask.querySelector('.task-description').innerHTML = task.description;
 		} else {
-			this.tasksList[task.id] = task;
+			const taskId = task.id;
+			this.tasksList[taskId] = task;
+			console.log(this.tasksList);
 			const taskEl =  `<li id="item-${task.id}" class="task-item">
 					<div class="task-meta">
 						<h3 class="task-title">${task.title}</h3>	

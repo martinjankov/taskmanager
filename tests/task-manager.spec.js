@@ -37,10 +37,19 @@ describe('TaskManager', () => {
 		saveModalEl.classList.add('task-save');
 		modalEl.appendChild(saveModalEl);
 
+		let taskIdEl = document.createElement('input');
+		taskIdEl.type = 'hidden';
+		taskIdEl.name = 'task_id';
+		modalEl.appendChild(taskIdEl);
+
 		taskManager = new TaskManager(taskWrapperEl, listContainerEl, loaderEl, modalEl);
 	});
 
-	it('should retrieve tasks', (done) => {
+	it('should have empty tasks array', () => {
+		expect(Object.values(taskManager.tasksList).length).toEqual(0);
+	});
+
+	it('should access tasks db', (done) => {
 		fetch(tasksListUrl, {
 			method: 'GET',
         	headers: {
@@ -49,29 +58,30 @@ describe('TaskManager', () => {
 	        }
 		}).then(response => {
 			expect(response.ok).toBe(true);
-			response.json().then( res => { 
-				expect(res.length).not.toBeLessThan(1); 
-				done(); 
-			});
+			done();
 		});
 	});
 
-	it('should format tasks', () => {
-		fetch(tasksListUrl, {
-			method: 'GET',
-        	headers: {
-	            'Accept': 'application/json',
-	            'Content-Type': 'application/json',
-	        }
-		}).then(response => {
-			response.json().then( res => { 
-				taskManager.formatTasks = jasmine.createSpy('formatTasks');
-				taskManager.addTaskItem = jasmine.createSpy('addTaskItem');
+	it('should format tasks', (done) => {
+		let tasks = [];
 
-				expect(taskManager.formatTasks).toHaveBeenCalled();
-				expect(taskManager.addTaskItem).toHaveBeenCalled();
-				done(); 
-			});
-		});
+		taskManager.formatTasks(tasks);
+		done();
+		
+		expect(taskManager.loader.style.display).toEqual('none');
+	});
+
+	it('should add task', () => {
+		const prevTasksSize = Object.values(taskManager.tasksList).length;
+
+		let task = {
+			'id' : 1,
+			'title' : 'Test 1',
+			'description' : 'This is test 1'
+		}
+
+		taskManager.addTaskItem(task);
+		
+		expect(Object.values(taskManager.tasksList).length).toEqual(prevTasksSize + 1);
 	});
 });
