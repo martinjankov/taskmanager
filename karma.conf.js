@@ -15,8 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        './TaskManager.js',
-        './index.spec.js'
+        './components/TaskManager.js',
+        './tests/task-manager.spec.js'
     ],
 
 

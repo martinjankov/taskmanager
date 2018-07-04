@@ -1,21 +1,19 @@
 class TaskManager {
-	constructor() {
+	constructor(taskWrapper, taskListContainer, loader, modal) {
 		this.tasksList = [];
 		this.baseUrl = 'http://localhost:3000';
 		this.tasksListUrl = this.baseUrl + '/tasks';
 		this.tasksSaveUrl = this.baseUrl + '/tasks';
 		this.tasksDeleteUrl = this.baseUrl + '/tasks/#id#';
-	}
 
-	init() {
-		this.listContainer = document.querySelector('#tasks-app ul');
-		this.loader = document.querySelector('#tasks-app .loader');
-		this.modal = document.querySelector('#tasks-app .task-modal');
-		
-		document.querySelector('.task-add').addEventListener('click', this.showModal.bind(this));
+		this.taskWrapper = taskWrapper;
+		this.listContainer = taskListContainer;
+		this.loader = loader;
+		this.modal = modal;
 
 		this.modal.querySelector('.close-modal').addEventListener('click', this.closeModal.bind(this));
 		this.modal.querySelector('.task-save').addEventListener('click', this.saveTask.bind(this));
+		this.taskWrapper.querySelector('.task-add').addEventListener('click', this.showModal.bind(this));
 	}
 
 	listTasks() {
