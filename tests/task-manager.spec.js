@@ -6,7 +6,38 @@ describe('TaskManager', () => {
 	let tasksDeleteUrl = baseUrl + '/tasks/#id#';
 
 	beforeEach( () => {
-		taskManager = new TaskManager();
+		let taskWrapperEl = document.createElement('div');
+		taskWrapperEl.id = 'tasks-app';
+		
+		let addTaskEl = document.createElement('button');
+		addTaskEl.type = 'button';
+		addTaskEl.classList.add('task-add');
+		taskWrapperEl.appendChild(addTaskEl);
+
+		let listContainerEl = document.createElement('ul');
+		
+		let loaderEl = document.createElement('div');
+		loaderEl.classList.add('loader');
+		
+		let modalEl = document.createElement('div');
+		modalEl.classList.add('task-modal');
+		modalEl.id = 'task-modal';
+
+		taskWrapperEl.appendChild(loaderEl);
+		taskWrapperEl.appendChild(listContainerEl);
+		taskWrapperEl.appendChild(modalEl);
+
+		let closeModalEl = document.createElement('button');
+		closeModalEl.type = 'button';
+		closeModalEl.classList.add('close-modal');
+		modalEl.appendChild(closeModalEl);
+
+		let saveModalEl = document.createElement('button');
+		saveModalEl.type = 'button';
+		saveModalEl.classList.add('task-save');
+		modalEl.appendChild(saveModalEl);
+
+		taskManager = new TaskManager(taskWrapperEl, listContainerEl, loaderEl, modalEl);
 	});
 
 	it('should retrieve tasks', (done) => {
