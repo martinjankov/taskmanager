@@ -1,25 +1,27 @@
-const path = require('path');
-
+var path = require('path');
+var webpack = require('webpack');
 module.exports = {
-  entry: {
-    app: './index.js'
+  entry: { 
+    TaskManager : './components/TaskManager.js',
+    main : './assets/js/main.js'
   },
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'build/js'),
+    filename: '[name].js'
   },
-
   module: {
-    rules: [{
-      test: /\.js$/, // include .js files
-      enforce: "pre", // preload the jshint loader
-      exclude: /node_modules/, // exclude any and all files in the node_modules folder
-      use: [{
-        loader: "babel-loader",
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
         query: {
-            presets: ['es2015']
+          presets: ['es2015']
         }
-      }]
-    }]
+      }
+    ]
   },
+  stats: {
+     colors: true
+  },
+  devtool: 'source-map'
 };

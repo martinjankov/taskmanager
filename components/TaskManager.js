@@ -158,3 +158,5 @@ class TaskManager {
 		this.modal.querySelector('#modal-task-description').value = '';
 	}
 }
+
+module.exports = TaskManager;
