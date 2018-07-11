@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Thu Jun 28 2018 14:46:16 GMT+0200 (CEST)
+var webpackConfig = require('./webpack.config.js');
 
 module.exports = function(config) {
   config.set({
@@ -15,7 +16,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        './components/TaskManager.js',
         './tests/task-manager.spec.js'
     ],
 
@@ -24,24 +24,13 @@ module.exports = function(config) {
     exclude: [
     ],
 
-
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        './tests/task-manager.spec.js' : ['webpack']
     },
 
-    webpack: {
-        module: {
-            loaders: [
-                { test: /\.js/, exclude: /node_modules/, loader: 'babel-loader' }
-            ]
-        },
-        watch: true
-    },
-    
-    webpackServer: {
-        noInfo: true
-    },
+    webpack: webpackConfig,
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

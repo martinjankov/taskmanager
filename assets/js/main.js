@@ -1,6 +1,6 @@
-(function(){
-	const TaskManager = require('../../components/TaskManager.js');
+import TaskManager from '../../components/TaskManager.js';
 
+(function(){
 	const taskWrapper = document.querySelector('#tasks-app');
 	const listContainer = document.querySelector('#tasks-app ul');
 	const loader = document.querySelector('#tasks-app .loader');

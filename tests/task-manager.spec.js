@@ -1,3 +1,5 @@
+import TaskManager from '../components/TaskManager.js';
+
 describe('TaskManager', () => {
 	let  taskManager;
 	let baseUrl = 'http://localhost:3000';

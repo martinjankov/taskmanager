@@ -1,4 +1,4 @@
-class TaskManager {
+export default class TaskManager {
 	constructor(taskWrapper, taskListContainer, loader, modal) {
 		this.tasksList = {};
 		this.baseUrl = 'http://localhost:3000';
@@ -158,5 +158,3 @@ class TaskManager {
 		this.modal.querySelector('#modal-task-description').value = '';
 	}
 }
-
-module.exports = TaskManager;
