@@ -4,18 +4,22 @@ RUN apt-get update
 
 RUN apt -y install curl
 
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+RUN apt-get install nodejs -y && apt-get install npm -y
 
-RUN apt-get -y install nodejs
+RUN npm cache clean -f
 
-RUN apt-get -y install npm
+RUN npm install -g n
+
+RUN n stable
 
 RUN npm install -g json-server
 
 RUN apt-get -y install git-core
 
-RUN mkdir public && chmod -R 777 public
+RUN mkdir /App && chmod -R 777 /App
 
-RUN cd /public && git clone https://github.com/martinjankov/taskmanager.git
+WORKDIR /App 
 
-EXPOSE 8081
+RUN git clone https://github.com/martinjankov/taskmanager.git
+
+RUN npm install
