@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  wordpress:
+    image: taskmanager-image:latest
+    container_name: taskmanager
+    volumes:
+      - .:/App/taskmanager
+    ports:
+      - "8080:80"
+    restart: always

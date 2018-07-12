@@ -22,4 +22,4 @@ WORKDIR /App
 
 RUN git clone https://github.com/martinjankov/taskmanager.git
 
-RUN npm install
+RUN cd /App/taskmanager && npm install
